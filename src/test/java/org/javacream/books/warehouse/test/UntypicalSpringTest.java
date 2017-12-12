@@ -1,6 +1,6 @@
 package org.javacream.books.warehouse.test;
 
-import org.javacream.books.warehouse.impl.MapBooksService;
+import org.javacream.books.warehouse.api.BooksService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,7 +16,7 @@ public class UntypicalSpringTest {
 	
 	@Test
 	public void testBusinessObjects() {
-		MapBooksService mapBooksService = context.getBean(MapBooksService.class); 
+		BooksService mapBooksService = context.getBean(BooksService.class); 
 		TestActor.doTest(mapBooksService);
 	}
 		
