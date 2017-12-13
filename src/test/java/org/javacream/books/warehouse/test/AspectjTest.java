@@ -1,7 +1,7 @@
 package org.javacream.books.warehouse.test;
 
 import org.javacream.books.warehouse.api.BooksService;
-import org.javacream.books.warehouse.impl.MapBooksService;
+import org.javacream.books.warehouse.impl.JpaBooksService;
 import org.javacream.store.api.StoreService;
 import org.javacream.store.impl.JdbcStoreService;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class AspectjTest {
 	// @Test aopalliance
 	public void testCastWithoutProxyOk() {
 		@SuppressWarnings("unused")
-		MapBooksService mapBooksService = (MapBooksService) booksService;
+		JpaBooksService mapBooksService = (JpaBooksService) booksService;
 	}
 
 	// @Test(expected=ClassCastException.class) aopalliance
