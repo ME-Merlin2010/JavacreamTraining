@@ -1,7 +1,14 @@
 package org.javacream.books.order;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity(name="OrderEntity")
+@Table(name="ORDER_TABLE")
 public class Order {
 
+	@Id
 	private long orderId;
 	private String isbn;
 	private double totalPrice;

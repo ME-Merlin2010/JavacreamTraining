@@ -9,10 +9,30 @@
 <!-- 		<property name="isbnGenerator" ref="randomIsbnGenerator"></property> -->
 <!-- 		<property name="storeService" ref="simpleStoreService"></property> -->
 <!-- 		</bean> -->
-	<bean class="org.javacream.books.isbngenerator.impl.RandomIsbnGenerator" id="randomIsbnGenerator">
-		<property name="prefix" value="${prefix}:"></property>
-		<property name="countryCode" value="-${countryCode}"></property>
+<!-- 	<bean class="org.javacream.books.isbngenerator.impl.RandomIsbnGenerator" id="randomIsbnGenerator"> -->
+<!-- 		<property name="prefix" value="${prefix}:"></property> -->
+<!-- 		<property name="countryCode" value="-${countryCode}"></property> -->
+<!-- 	</bean> -->
+
+
+	<context:property-placeholder
+		ignore-unresolvable="true" location="application.properties" />
+
+	<bean id="parentIsbnGenerator" abstract="true">
+		<property name="countryCode" value="${countryCode}"></property>
+		<property name="prefix" value="${prefix}"></property>
 	</bean>
+	<bean class="org.javacream.books.isbngenerator.impl.RandomIsbnGenerator"
+		id="randomIsbnGenerator" parent="parentIsbnGenerator">
+		<qualifier value="random"></qualifier>
+	</bean>
+	<bean class="org.javacream.books.isbngenerator.impl.CounterIsbnGenerator"
+		id="counterIsbnGenerator" parent="parentIsbnGenerator">
+<!-- 		<qualifier value="sequence"></qualifier> -->
+	</bean>
+
+
+
 	<!-- Auskommentieren, wenn über BooksApplicationConfiguration verwendet werden soll. -->
 <!-- 	<bean class="org.javacream.store.impl.SimpleStoreService" id="simpleStoreService"></bean> -->
 	<bean class="org.javacream.store.impl.JdbcStoreService" id="jdbcStoreService"></bean>
@@ -28,4 +48,8 @@
 	<!-- <import resource="aop.xml" /> -->
 	<import resource="aspectj.xml" /> 
 
+	<import resource="jta.xml" />
+	<import resource="jpa.xml" />
+	
+	
 </beans>

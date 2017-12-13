@@ -14,6 +14,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.StatementCallback;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class JdbcStoreService implements StoreService {
@@ -25,6 +27,7 @@ public class JdbcStoreService implements StoreService {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public int getStock(final String category, final String item) {
 
 		int result = jdbcTemplate.execute(new StatementCallback<Integer>() {

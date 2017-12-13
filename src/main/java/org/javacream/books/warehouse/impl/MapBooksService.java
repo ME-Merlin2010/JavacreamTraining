@@ -36,7 +36,7 @@ public class MapBooksService implements BooksService {
 		this.storeService = storeService;
 	}
 
-	@Autowired 
+	@Autowired @Qualifier("sequence")
 	private IsbnGenerator isbnGenerator;
 	private Map<String, Book> books;
 

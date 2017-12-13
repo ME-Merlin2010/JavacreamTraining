@@ -34,7 +34,7 @@ public class DBTest {
 		TestActor.doTest(booksService);
 	}
 
-	@Test public void testDataSource() throws Exception{
+	@Test public void testDataSource() throws Exception {
 		Connection con = dataSource.getConnection();
 		Assert.assertNotNull(con);
 		con.close();
